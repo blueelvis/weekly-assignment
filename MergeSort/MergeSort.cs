@@ -21,6 +21,7 @@ namespace MergeSort
             {
                 userElements[j] = int.Parse(Console.ReadLine());
             }
+
         }
     }
 }
