@@ -14,7 +14,7 @@ namespace Week1Assignment
             Console.WriteLine("Program to sort numbers using Insertion Sort\n\n");
             Console.WriteLine("Enter the number of elements to sort = \t");
             numberOfElements = int.Parse(Console.ReadLine());
-
+            Console.WriteLine("Please Enter the elements : \n");
             int[] userElements = new int[numberOfElements];
 
             for (int j = 0; j < userElements.Length; j++)
@@ -24,6 +24,10 @@ namespace Week1Assignment
             bool didSwap = false;
             do
             {
+                if (userElements.Length == 0 || userElements.Length == 1)
+                {
+                    break;
+                }
                 didSwap = false;
                 for (i = 0; i < userElements.Length; i++)
                 {
