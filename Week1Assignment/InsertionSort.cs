@@ -10,16 +10,40 @@ namespace Week1Assignment
     {
         static void Main(string[] args)
         {
-            int numberOfElements;
+            int numberOfElements,i=0;
             Console.WriteLine("Program to sort numbers using Insertion Sort\n\n");
             Console.WriteLine("Enter the number of elements to sort = \t");
             numberOfElements = int.Parse(Console.ReadLine());
 
             int[] userElements = new int[numberOfElements];
 
-            for (int i = 0; i < userElements.Length; i++)
+            for (int j = 0; j < userElements.Length; j++)
             {
-                userElements[i] = int.Parse(Console.ReadLine());
+                userElements[j] = int.Parse(Console.ReadLine());
+            }
+            bool didSwap = false;
+            do
+            {
+                didSwap = false;
+                for (i = 0; i < userElements.Length; i++)
+                {
+                    if (i == (userElements.Length - 1))
+                    {
+                        continue;
+                    }
+                    if(userElements[i] > userElements[i+1])
+                    {
+                        int temp = userElements[i];
+                        userElements[i] = userElements[i + 1];
+                        userElements[i + 1] = temp;
+                        didSwap = true;
+                    }
+                }
+            } while (didSwap == true);
+            Console.WriteLine("\n\nThe Elements in Sorted order are = \n");
+            foreach (int element in userElements)
+            {
+                Console.WriteLine(element.ToString());
             }
         }
     }
