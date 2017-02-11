@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace QueueProgram
 {
@@ -6,10 +7,10 @@ namespace QueueProgram
     {
         static void Main(string[] args)
         {
-            int numberOfElements, i = 0,choice;
+            int i = 0,choice;
             Console.WriteLine("Program exhibiting functionality of Queue\n\n");
             Console.WriteLine("How long do you want the queue? = \t");
-            numberOfElements = int.Parse(Console.ReadLine());
+            int numberOfElements = int.Parse(Console.ReadLine());
 
             Queue queueObject = new Queue(numberOfElements);
 
@@ -21,17 +22,17 @@ namespace QueueProgram
                 {
                     case 1:
                         {
-                            queueObject.displayQueueContent();
+                            queueObject.DisplayQueueContent();
                             break;
                         }
                     case 2:
                         {
-                            queueObject.addElementToQueue();
+                            queueObject.AddElementToQueue();
                             break;
                         }
                     case 3:
                         {
-                            queueObject.deleteElementFromQueue();
+                            queueObject.DeleteElementFromQueue();
                             break;
                         }
                     case 4:
@@ -50,34 +51,32 @@ namespace QueueProgram
     }
     class Queue
     {
-        private int[] queue;
-        private int currentIndex=-1;
-
-        public Queue(int numberOfElements)
+        private Queue<string> _queue;
+        public Queue(int maxSize)
         {
-            this.queue = new int[numberOfElements];
+            _queue = new Queue<string>(maxSize);
         }
 
-        public void addElementToQueue()
+        public void AddElementToQueue()
         {
             Console.WriteLine("Please Enter The Element = \t");
-            int element = int.Parse(Console.ReadLine());
-            this.queue[++currentIndex] = element;
+            string input = Console.ReadLine();
+            _queue.Enqueue(input);
             Console.WriteLine("Queue :");
-            this.displayQueueContent();
+            this.DisplayQueueContent();
         }
 
-        public void deleteElementFromQueue()
+        public void DeleteElementFromQueue()
         {
-            this.queue[currentIndex--] = 0;
+            _queue.Dequeue();
             Console.WriteLine("Queue :");
-            this.displayQueueContent();
+            DisplayQueueContent();
         }
 
-        public void displayQueueContent()
+        public void DisplayQueueContent()
         {
             Console.WriteLine();
-            foreach (int element in queue)
+            foreach (string element in _queue)
             {
                 Console.Write(element + " ");
             }
