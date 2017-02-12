@@ -4,47 +4,56 @@ namespace Stack
 {
     class StackProgram
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            int i = 0, choice;
+            int numberOfElements;
             Console.WriteLine("Program exhibiting functionality of Stack\n\n");
             Console.WriteLine("How big do you want the Stack? = \t");
-            int numberOfElements = int.Parse(Console.ReadLine());
-            Stack stackObject = new Stack(numberOfElements);
-            do
+            if (int.TryParse(Console.ReadLine(), out numberOfElements))
             {
-                Console.WriteLine("What would you like to do? \n1. Display Stack \n2. Add Element To Stack \n3. Remove Element from Stack \n4. Exit");
-                choice = int.Parse(Console.ReadLine());
-                switch (choice)
+                Stack stackObject = new Stack(numberOfElements);
+                int choice;
+                do
                 {
-                    case 1:
+                    Console.WriteLine(
+                        "What would you like to do? \n1. Display Stack \n2. Add Element To Stack \n3. Remove Element from Stack \n4. Exit");
+                    int.TryParse(Console.ReadLine(), out choice);
+                    switch (choice)
+                    {
+                        case 1:
                         {
                             stackObject.DisplayStackContent();
                             break;
                         }
-                    case 2:
+                        case 2:
                         {
                             stackObject.AddElementToStack();
                             break;
                         }
-                    case 3:
+                        case 3:
                         {
                             stackObject.DeleteElementFromStack();
                             break;
                         }
-                    case 4:
+                        case 4:
                         {
                             Console.WriteLine("Goodbye!");
                             break;
                         }
-                    default:
+                        default:
                         {
                             Console.WriteLine("Invalid Choice!");
                             break;
                         }
-                }
-            } while (choice != 4);
+                    }
+                } while (choice != 4);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please Try Again.");
+            }
         }
+        
     }
 
     class Stack

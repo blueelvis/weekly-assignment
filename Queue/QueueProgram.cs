@@ -1,52 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace QueueProgram
+namespace Queue
 {
     class QueueProgram
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            int i = 0,choice;
+            int numberOfElements;
             Console.WriteLine("Program exhibiting functionality of Queue\n\n");
             Console.WriteLine("How long do you want the queue? = \t");
-            int numberOfElements = int.Parse(Console.ReadLine());
 
-            Queue queueObject = new Queue(numberOfElements);
-
-            do
+            if (int.TryParse(Console.ReadLine(), out numberOfElements))
             {
-                Console.WriteLine("What would you like to do? \n1. Display Queue \n2. Add Element To Queue \n3. Remove Element from Queue \n4. Exit");
-                choice = int.Parse(Console.ReadLine());
-                switch (choice) 
+                Queue queueObject = new Queue(numberOfElements);
+
+                int choice;
+                do
                 {
-                    case 1:
+                    Console.WriteLine(
+                        "What would you like to do? \n1. Display Queue \n2. Add Element To Queue \n3. Remove Element from Queue \n4. Exit");
+                    int.TryParse(Console.ReadLine(), out choice);
+                    switch (choice)
+                    {
+                        case 1:
                         {
                             queueObject.DisplayQueueContent();
                             break;
                         }
-                    case 2:
+                        case 2:
                         {
                             queueObject.AddElementToQueue();
                             break;
                         }
-                    case 3:
+                        case 3:
                         {
                             queueObject.DeleteElementFromQueue();
                             break;
                         }
-                    case 4:
+                        case 4:
                         {
                             Console.WriteLine("Goodbye!");
                             break;
                         }
-                    default:
+                        default:
                         {
                             Console.WriteLine("Invalid Choice!");
                             break;
                         }
-                }
-            } while (choice != 4);
+                    }
+                } while (choice != 4);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input. Please Try Again.");
+            }
         }
     }
     class Queue
@@ -63,7 +71,7 @@ namespace QueueProgram
             string input = Console.ReadLine();
             _queue.Enqueue(input);
             Console.WriteLine("Queue :");
-            this.DisplayQueueContent();
+            DisplayQueueContent();
         }
 
         public void DeleteElementFromQueue()

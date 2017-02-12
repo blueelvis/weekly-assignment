@@ -13,9 +13,6 @@ namespace MergeSort
             Console.WriteLine("Enter the number of elements to sort = \t");
             if (int.TryParse(Console.ReadLine(), out numberOfElements))
             {
-
-
-
                 Console.WriteLine("Please Enter the elements : \n");
                 double[] userElements = new double[numberOfElements];
 
