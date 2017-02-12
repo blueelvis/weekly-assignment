@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Week1Assignment
 {
-    class InsertionSort
+    class InsertionSortClass
     {
         static void Main(string[] args)
         {
-            int numberOfElements,i=0;
             Console.WriteLine("Program to sort numbers using Insertion Sort\n\n");
             Console.WriteLine("Enter the number of elements to sort = \t");
-            numberOfElements = int.Parse(Console.ReadLine());
+            var numberOfElements = int.Parse(Console.ReadLine());
             Console.WriteLine("Please Enter the elements : \n");
             int[] userElements = new int[numberOfElements];
 
@@ -21,6 +20,22 @@ namespace Week1Assignment
             {
                 userElements[j] = int.Parse(Console.ReadLine());
             }
+            userElements = InsertionSort(userElements);
+            PrintArray(userElements);
+        }
+
+        private static void PrintArray(int[] userElements)
+        {
+            Console.WriteLine("\n\nThe Elements in Sorted order are = \n");
+            foreach (int element in userElements)
+            {
+                Console.WriteLine(element.ToString());
+            }
+        }
+
+        private static int[] InsertionSort(int[] userElements)
+        {
+            int i;
             bool didSwap = false;
             do
             {
@@ -35,7 +50,7 @@ namespace Week1Assignment
                     {
                         continue;
                     }
-                    if(userElements[i] > userElements[i+1])
+                    if (userElements[i] > userElements[i + 1])
                     {
                         int temp = userElements[i];
                         userElements[i] = userElements[i + 1];
@@ -44,11 +59,7 @@ namespace Week1Assignment
                     }
                 }
             } while (didSwap == true);
-            Console.WriteLine("\n\nThe Elements in Sorted order are = \n");
-            foreach (int element in userElements)
-            {
-                Console.WriteLine(element.ToString());
-            }
+            return userElements;
         }
     }
 }
