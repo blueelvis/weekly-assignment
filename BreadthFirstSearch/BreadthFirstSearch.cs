@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace BreadthFirstSearch
 {
     class BreadthFirstSearch
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int choice;
             Console.WriteLine("Program to implement logic of BFS using Binary Trees");
@@ -15,14 +14,23 @@ namespace BreadthFirstSearch
             do
             {
                 Console.WriteLine("What would you like to do? \n1. Add node to tree \n2. Breadth First Search Traversal of Tree \n3. Exit");
-                choice = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out choice);
                 switch (choice)
                 {
                     case 1:
                         {
                             Console.WriteLine("Please Enter the value of the element to insert = \t");
-                            int value = int.Parse(Console.ReadLine());
-                            root = bt.InsertNode(root, value);
+                            var input = Console.ReadLine();
+                            int value;
+                            if (input != null && int.TryParse(input, out value))
+                            {
+                                value = int.Parse(input);
+                                root = bt.InsertNode(root, value);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input entered. Please try again.");
+                            }
                             break;
                         }
                     case 2:
@@ -55,22 +63,22 @@ namespace BreadthFirstSearch
 
     class Node
     {
-        public Node left;
-        public Node right;
-        public int data;
+        public Node Left;
+        public Node Right;
+        public int Data;
 
         public Node(int value,Node left, Node right)
         {
-            this.data = value;
-            this.left = left;
-            this.right = right;
+            Data = value;
+            Left = left;
+            Right = right;
         }
 
         public Node(int value)
         {
-            this.data = value;
-            this.left = null;
-            this.right = null;
+            Data = value;
+            Left = null;
+            Right = null;
         }
     }
 
@@ -82,13 +90,13 @@ namespace BreadthFirstSearch
             {
                 root = new Node(val);
             }
-            else if (val < root.data)
+            else if (val < root.Data)
             {
-                root.left = InsertNode(root.left, val);
+                root.Left = InsertNode(root.Left, val);
             }
             else
             {
-                root.right = InsertNode(root.right, val);
+                root.Right = InsertNode(root.Right, val);
             }
             return root;
         }
@@ -101,15 +109,15 @@ namespace BreadthFirstSearch
             while (queue.Count > 0)
             {
                 root = queue.Dequeue();
-                Console.WriteLine(root.data + " ");
+                Console.WriteLine(root.Data + " ");
 
-                if (root.left != null)
+                if (root.Left != null)
                 {
-                    queue.Enqueue(root.left);
+                    queue.Enqueue(root.Left);
                 }
-                if (root.right!= null)
+                if (root.Right!= null)
                 {
-                    queue.Enqueue(root.right);
+                    queue.Enqueue(root.Right);
                 }
             }
         }
