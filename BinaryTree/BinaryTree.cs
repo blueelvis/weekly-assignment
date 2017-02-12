@@ -21,7 +21,8 @@ namespace BinaryTree
                         Console.WriteLine("Please Enter the value of the element to insert = \t");
                         var input = Console.ReadLine();
                         int value;
-                            if (input != null && int.TryParse(input,out value))
+                        int.TryParse(input, out value);
+                            if (input != null && Convert.ToBoolean(value))
                             {
                                 value = int.Parse(input);
                                 root = bt.InsertNode(root, value);

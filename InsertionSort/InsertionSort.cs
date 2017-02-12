@@ -1,42 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Week1Assignment
 {
     class InsertionSortClass
     {
-        static void Main(string[] args)
+        static void Main()
         {
+            int numberOfElements;
             Console.WriteLine("Program to sort numbers using Insertion Sort\n\n");
             Console.WriteLine("Enter the number of elements to sort = \t");
-            var numberOfElements = int.Parse(Console.ReadLine());
-            Console.WriteLine("Please Enter the elements : \n");
-            int[] userElements = new int[numberOfElements];
-
-            for (int j = 0; j < userElements.Length; j++)
+            if (int.TryParse(Console.ReadLine(), out numberOfElements))
             {
-                userElements[j] = int.Parse(Console.ReadLine());
+                Console.WriteLine("Please Enter the elements : \n");
+                double[] userElements = new double[numberOfElements];
+
+                for (int j = 0; j < userElements.Length; j++)
+                {
+                    double tmp;
+                    if (double.TryParse(Console.ReadLine(),out tmp))
+                    {
+                        userElements[j] = tmp;
+                    }
+                    
+                }
+                userElements = InsertionSort(userElements);
+                PrintArray(userElements);
             }
-            userElements = InsertionSort(userElements);
-            PrintArray(userElements);
+            else
+            {
+                Console.WriteLine("Invalid Input entered. Please try again.");
+            }
         }
 
-        private static void PrintArray(int[] userElements)
+        private static void PrintArray(double[] userElements)
         {
             Console.WriteLine("\n\nThe Elements in Sorted order are = \n");
-            foreach (int element in userElements)
+            foreach (double element in userElements)
             {
-                Console.WriteLine(element.ToString());
+                Console.WriteLine(element.ToString(CultureInfo.CurrentCulture));
             }
         }
 
-        private static int[] InsertionSort(int[] userElements)
+        private static double[] InsertionSort(double[] userElements)
         {
             int i;
-            bool didSwap = false;
+            bool didSwap;
             do
             {
                 if (userElements.Length == 0 || userElements.Length == 1)
@@ -52,7 +61,7 @@ namespace Week1Assignment
                     }
                     if (userElements[i] > userElements[i + 1])
                     {
-                        int temp = userElements[i];
+                        double temp = userElements[i];
                         userElements[i] = userElements[i + 1];
                         userElements[i + 1] = temp;
                         didSwap = true;

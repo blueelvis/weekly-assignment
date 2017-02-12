@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace MergeSort
 {
@@ -7,26 +8,40 @@ namespace MergeSort
     {
         static void Main()
         {
+            int numberOfElements;
             Console.WriteLine("Program to sort numbers using Merge Sort\n\n");
             Console.WriteLine("Enter the number of elements to sort = \t");
-            int numberOfElements = int.Parse(Console.ReadLine());
-            Console.WriteLine("Please Enter the elements : \n");
-            int[] userElements = new int[numberOfElements];
+            if (int.TryParse(Console.ReadLine(), out numberOfElements))
+            {
 
-            for (int j = 0; j < numberOfElements; j++)
-            {
-                userElements[j] = int.Parse(Console.ReadLine());
+
+
+                Console.WriteLine("Please Enter the elements : \n");
+                double[] userElements = new double[numberOfElements];
+
+                for (int j = 0; j < numberOfElements; j++)
+                {
+                    double tmp;
+                    if (double.TryParse(Console.ReadLine(), out tmp))
+                    {
+                        userElements[j] = tmp;
+                    }
+                }
+                userElements = MergeSort(userElements);
+                Console.WriteLine("\n\nThe Elements in Sorted order are = \n");
+                foreach (double element in userElements)
+                {
+                    Console.WriteLine(element.ToString(CultureInfo.CurrentCulture));
+                }
             }
-            userElements = MergeSort(userElements);
-            Console.WriteLine("\n\nThe Elements in Sorted order are = \n");
-            foreach (int element in userElements)
+            else
             {
-                Console.WriteLine(element.ToString());
+                Console.WriteLine("Invalid Input entered. Please try again.");
             }
 
         }
 
-        public static int[] MergeSort(int[] array)
+        public static double[] MergeSort(double[] array)
         {
             // If list size is 0 (empty) or 1, consider it sorted and return it
             // (using less than or equal prevents infinite recursion for a zero length array).
@@ -37,8 +52,8 @@ namespace MergeSort
 
             // Else list size is > 1, so split the list into two sublists.
             int middleIndex = (array.Length) / 2;
-            int[] left = new int[middleIndex];
-            int[] right = new int[array.Length - middleIndex];
+            double[] left = new double[middleIndex];
+            double[] right = new double[array.Length - middleIndex];
 
             Array.Copy(array, left, middleIndex);
             Array.Copy(array, middleIndex, right, 0, right.Length);
@@ -53,13 +68,13 @@ namespace MergeSort
             return Merge(left, right);
         }
 
-        public static int[] Merge(int[] left, int[] right)
+        public static double[] Merge(double[] left, double[] right)
         {
             // Convert the input arrays to lists, which gives more flexibility 
             // and the option to resize the arrays dynamically.
-            List<int> leftList = new List<int>(left);
-            List<int> rightList = new List<int>(right);
-            List<int> resultList = new List<int>();
+            List<double> leftList = new List<double>(left);
+            List<double> rightList = new List<double>(right);
+            List<double> resultList = new List<double>();
 
             // While the sublist are not empty merge them repeatedly to produce new sublists 
             // until there is only 1 sublist remaining. This will be the sorted list.
@@ -96,7 +111,7 @@ namespace MergeSort
             }
 
             // Convert the resulting list back to a static array
-            int[] result = resultList.ToArray();
+            double[] result = resultList.ToArray();
             return result;
         }
 
