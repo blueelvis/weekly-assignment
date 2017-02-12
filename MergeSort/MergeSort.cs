@@ -5,12 +5,11 @@ namespace MergeSort
 {
     class MergeSortClass
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            int numberOfElements, i = 0;
             Console.WriteLine("Program to sort numbers using Merge Sort\n\n");
             Console.WriteLine("Enter the number of elements to sort = \t");
-            numberOfElements = int.Parse(Console.ReadLine());
+            int numberOfElements = int.Parse(Console.ReadLine());
             Console.WriteLine("Please Enter the elements : \n");
             int[] userElements = new int[numberOfElements];
 

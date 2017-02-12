@@ -4,7 +4,7 @@ namespace BinaryTree
 {
     class BinaryTreeProgram
     {
-        static void Main(string[] args)
+        static void Main()
         {
             int choice;
             Console.WriteLine("Program to implement logic of Binary Trees");
@@ -13,15 +13,24 @@ namespace BinaryTree
             do
             {
                 Console.WriteLine("What would you like to do? \n1. Add node to tree \n2. Traverse Tree \n3. Exit");
-                choice = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out choice);
                 switch (choice)
                 {
                     case 1:
                     {
                         Console.WriteLine("Please Enter the value of the element to insert = \t");
-                        int value = int.Parse(Console.ReadLine());
-                        root = bt.InsertNode(root,value);
-                            break;
+                        var input = Console.ReadLine();
+                        int value;
+                            if (input != null && int.TryParse(input,out value))
+                            {
+                                value = int.Parse(input);
+                                root = bt.InsertNode(root, value);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid Input entered. Please try again.");
+                            }
+                        break;
                         }
                     case 2:
                         {
@@ -54,9 +63,9 @@ namespace BinaryTree
 
     class Node
     {
-        public int value;
-        public Node left;
-        public Node right;
+        public int Value;
+        public Node Left;
+        public Node Right;
     }
 
     class BinaryTree
@@ -66,15 +75,15 @@ namespace BinaryTree
             if (root == null)
             {
                 root = new Node();
-                root.value = val;
+                root.Value = val;
             }
-            else if (val < root.value)
+            else if (val < root.Value)
             {
-                root.left = InsertNode(root.left, val);
+                root.Left = InsertNode(root.Left, val);
             }
             else
             {
-                root.right = InsertNode(root.right, val);
+                root.Right = InsertNode(root.Right, val);
             }
             return root;
         }
@@ -87,11 +96,11 @@ namespace BinaryTree
             }
             else
             {
-                Console.WriteLine(" " + root.value);
+                Console.WriteLine(" " + root.Value);
             }
             
-            TraverseTree(root.left);
-            TraverseTree(root.right);
+            TraverseTree(root.Left);
+            TraverseTree(root.Right);
         }
     }
 }
