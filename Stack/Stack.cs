@@ -27,7 +27,10 @@ namespace Stack
                         }
                         case 2:
                         {
-                            stackObject.AddElementToStack();
+                                Console.WriteLine("Please Enter The Element = \t");
+                                string input = Console.ReadLine();
+
+                             stackObject.AddElementToStack(input);
                             break;
                         }
                         case 3:
@@ -66,10 +69,8 @@ namespace Stack
             _stack = new string[numberOfElements];
         }
 
-        public void AddElementToStack()
+        public void AddElementToStack(string input)
         {
-            Console.WriteLine("Please Enter The Element = \t");
-            string input = Console.ReadLine();
             _stack[++_currentIndex] = input;
             Console.WriteLine("Stack :");
             DisplayStackContent();

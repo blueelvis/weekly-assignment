@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace Week1Assignment
+namespace InsertionSort
 {
     class InsertionSortClass
     {
@@ -33,7 +33,7 @@ namespace Week1Assignment
             }
         }
 
-        private static void PrintArray(double[] userElements)
+        public static void PrintArray(double[] userElements)
         {
             Console.WriteLine("\n\nThe Elements in Sorted order are = \n");
             foreach (double element in userElements)
@@ -42,7 +42,7 @@ namespace Week1Assignment
             }
         }
 
-        private static double[] InsertionSort(double[] userElements)
+        public static double[] InsertionSort(double[] userElements)
         {
             int i;
             bool didSwap;
